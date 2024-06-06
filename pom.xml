@@ -70,6 +70,14 @@
 			<version>1.18.30</version>
 			<scope>provided</scope>
 	  	</dependency>
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-security-jpa</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-security-jpa-reactive</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

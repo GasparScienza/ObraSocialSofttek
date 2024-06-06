@@ -7,7 +7,11 @@ import io.quarkus.runtime.annotations.QuarkusMain;
 public class Main {
 
 	public static void main(String[] args) {
-		Quarkus.run(args);
+		try {
+			Quarkus.run(args);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 }
