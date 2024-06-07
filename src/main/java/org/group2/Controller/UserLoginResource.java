@@ -1,10 +1,10 @@
 package org.group2.Controller;
 
-import java.util.List;
-
+import org.group2.DTO.UserLoginDTO;
 import org.group2.Model.UserLogin;
 import org.group2.Service.IUserLoginService;
 
+import io.quarkus.security.identity.SecurityIdentity;
 import jakarta.annotation.security.PermitAll;
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
@@ -17,6 +17,8 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
+import jakarta.ws.rs.core.Response.Status;
 
 @Path("/userlogin")
 @Produces(MediaType.APPLICATION_JSON)
@@ -26,38 +28,77 @@ public class UserLoginResource {
     @Inject
     private IUserLoginService iUserLoginService;
     
+    @Inject
+    private SecurityIdentity securityIdentity;
+    
     //Crear un usuario
     @POST
     @Path("/add")
     @PermitAll
-    public void addUser(UserLogin userLogin){
-        iUserLoginService.addUser(userLogin);
+    public Response addUser(UserLogin userLogin){
+    	try {
+    		iUserLoginService.addUser(userLogin);
+    		return Response.ok("Usuario creado correctamente").build();
+		} catch (Exception e) {
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
+                    .entity("Error al crear el usuario: " + e.getMessage())
+                    .build();
+		}
     }
     
     @PUT
     @Path("/edit/{id}")
     @RolesAllowed("ADMIN")
-    public void editUser(@PathParam("id") Long id, UserLogin userLogin ) {
-    	iUserLoginService.editUser(id, userLogin.getUsername(), userLogin.getPassword(), userLogin.getRol());
+    public Response editUser(@PathParam("id") Long id, UserLogin userLogin ) {
+    	try {
+    		iUserLoginService.editUser(id, userLogin.getUsername(), userLogin.getPassword(), userLogin.getRol());
+    		return Response.ok("Usuario editado correctamente").build();
+		} catch (Exception e) {
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
+                    .entity("Error al editar el usuario: " + e.getMessage())
+                    .build();
+		}
     }
     
     @GET
-    @Path("/user/{id}")
+    @Path("/{id}")
     @RolesAllowed("ADMIN")
-    public UserLogin findUser(@PathParam("id") Long id) {
-    	return iUserLoginService.findUser(id);
-    }
-    
-    @GET
-    @RolesAllowed("ADMIN")
-    public List<UserLogin> getUsers(){
-    	return iUserLoginService.getUsers();
+    public Response findUser(@PathParam("id") Long id) {
+    	UserLogin user = iUserLoginService.findUser(id);
+    	UserLoginDTO us;
+        if (user == null) {
+            return Response.status(Status.NOT_FOUND)
+                    .entity("Usuario no encontrado")
+                    .build();
+        }else {
+        	us = new UserLoginDTO(user.getUsername(), user.getRol());
+        }
+        return Response.ok(us).build();
     }
     
     @DELETE
     @Path("/del/{id}")
     @RolesAllowed("ADMIN")
-    public void delUser(@PathParam("id") Long id) {
-    	iUserLoginService.delUser(id);
+    public Response delUser(@PathParam("id") Long id) {
+    	UserLogin user = iUserLoginService.findUser(id);
+        if (user == null) {
+            return Response.status(Status.NOT_FOUND)
+                    .entity("Usuario no encontrado")
+                    .build();
+        }else {
+        	iUserLoginService.delUser(id);
+        	return Response.ok("Usuario Eliminado correctamente").build();
+        }
+    	
+    }
+    
+    
+    
+    @GET
+    @Path("/me")
+    @RolesAllowed("ADMIN")
+    public UserLoginDTO getMe(){
+    	UserLoginDTO me = new UserLoginDTO(securityIdentity.getPrincipal().getName(),  securityIdentity.getRoles());
+    	return me;
     }
 }
