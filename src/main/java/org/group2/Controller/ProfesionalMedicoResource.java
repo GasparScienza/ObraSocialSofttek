@@ -3,7 +3,9 @@ package org.group2.Controller;
 import java.util.List;
 
 import org.group2.Model.ProfesionalMedico;
+import org.group2.Model.Receta;
 import org.group2.Repository.ProfesionalMedicoRepository;
+import org.group2.ServiceImpl.ProfesionalMedicoService;
 
 import jakarta.inject.Inject;
 import jakarta.ws.rs.Consumes;
@@ -22,30 +24,27 @@ import jakarta.ws.rs.core.MediaType;
 public class ProfesionalMedicoResource {
 
 	@Inject
-	ProfesionalMedicoRepository profesionalRepository;
-	
-	@GET
-	public List<ProfesionalMedico> cartillaMedicos(){
-		return profesionalRepository.listAll();
-	}
-	
+	ProfesionalMedicoService profesionalService;
 	
 	@POST
-	public void agregarMedico(ProfesionalMedico profesionalMedico){
-		profesionalRepository.persist(profesionalMedico);
+	public void generarReceta(Receta receta) {
+		profesionalService.generarReceta(receta);
 	}
 	
+
+	@DELETE
+	@Path("/{id}")
+	public void eliminarTurnoMedico(@PathParam("id") Long id) {
+		profesionalService.cancelarTurno(id);
+	}
+	
+	/*
 	@PUT
 	public void modificarMedico(ProfesionalMedico profesionalMedico) {
 		profesionalRepository.getEntityManager().merge(profesionalMedico);
 	}
-	
-	@DELETE
-	@Path("/{id}")
-	public void eliminarMedico(@PathParam("id") Long id) {
-		profesionalRepository.deleteById(id);
-	}
-	
+	*/
+
 	
 	
 	
