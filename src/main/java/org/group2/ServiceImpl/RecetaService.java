@@ -2,13 +2,9 @@ package org.group2.ServiceImpl;
 
 import java.util.List;
 
-import org.group2.Model.Paciente;
 import org.group2.Model.Receta;
-import org.group2.Model.TurnoMedico;
 import org.group2.Repository.RecetaRepository;
 import org.group2.Service.IRecetaService;
-
-import io.quarkus.security.identity.SecurityIdentity;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
@@ -20,8 +16,6 @@ public class RecetaService implements IRecetaService{
 	@Inject
 	private RecetaRepository recetaRepository;
 	
-	@Inject
-    private SecurityIdentity securityIdentity;
 	
 	@Override
 	public void addReceta(Receta receta) {
@@ -54,25 +48,25 @@ public class RecetaService implements IRecetaService{
 	
 	
 	@Override
-	public String editReceta(Long id, String medicamentos, String diagnostico, TurnoMedico turnoMedico) {
+	public String editReceta(Long id, Receta receta) {
 		try {
 			if(id != null) {
-				Receta receta = this.findReceta(id);
-				if(receta == null) {
+				Receta r = this.findReceta(id);
+				if(r == null) {
 					throw new RuntimeException("La receta no existe.");
 				}
 				
-				if(diagnostico != null) {
-					receta.setDiagnostico(diagnostico);
+				if(receta.getDiagnostico() != null) {
+					r.setDiagnostico(receta.getDiagnostico());
 				}
-				if(medicamentos != null) {
-					receta.setMedicamento(medicamentos);
+				if(receta.getMedicamento() != null) {
+					r.setMedicamento(receta.getMedicamento());
 				}
-				if(turnoMedico != null) {
-					receta.setTurnoMedico(turnoMedico);
+				if(receta.getTurnoMedico() != null) {
+					r.setTurnoMedico(receta.getTurnoMedico());
 				}
 				
-				recetaRepository.getEntityManager().merge(receta);
+				recetaRepository.getEntityManager().merge(r);
 				return "Receta editado exitosamente.";
 			}else {
 				throw new RuntimeException("El ID de la receta no puede ser nulo.");

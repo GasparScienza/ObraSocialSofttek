@@ -1,9 +1,6 @@
 package org.group2.Model;
 
-import java.time.LocalDateTime;
-
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
-import io.quarkus.security.jpa.UserDefinition;
 import jakarta.persistence.Entity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

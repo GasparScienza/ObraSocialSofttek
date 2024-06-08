@@ -1,14 +1,9 @@
 package org.group2.ServiceImpl;
 
-import java.time.LocalDateTime;
 import java.util.List;
-
-import org.group2.Model.Paciente;
-import org.group2.Model.ProfesionalMedico;
 import org.group2.Model.TurnoMedico;
 import org.group2.Repository.TurnoMedicoRepository;
 import org.group2.Service.ITurnoMedicoService;
-
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
@@ -40,24 +35,24 @@ public class TurnoMedicoService implements ITurnoMedicoService{
 	}
 
 	@Override
-	public String editTurno(Long id, Paciente paciente, ProfesionalMedico profesionalMedico, LocalDateTime fechaHora, String motivoConsulta) {
+	public String editTurno(Long id, TurnoMedico turno) {
 		try {
 			if(id != null) {
 				TurnoMedico turnoMedico = this.findTurno(id);
 				if(turnoMedico == null) {
 					throw new RuntimeException("El turno medico no existe.");
 				}
-				if(fechaHora != null) {
-					turnoMedico.setFechaHora(fechaHora);
+				if(turno.getFechaHora() != null) {
+					turnoMedico.setFechaHora(turno.getFechaHora());
 				}
-				if(motivoConsulta != null) {
-					turnoMedico.setMotivoConsulta(motivoConsulta);
+				if(turno.getMotivoConsulta() != null) {
+					turnoMedico.setMotivoConsulta(turno.getMotivoConsulta());
 				}
-				if(paciente != null) {
-					turnoMedico.setPaciente(paciente);
+				if(turno.getPaciente() != null) {
+					turnoMedico.setPaciente(turno.getPaciente());
 				}
-				if(profesionalMedico != null) {
-					turnoMedico.setProfesional(profesionalMedico);
+				if(turno.getProfesional() != null) {
+					turnoMedico.setProfesional(turno.getProfesional());
 				}
 				turnoMedicoRepository.getEntityManager().merge(turnoMedico);
 				return "Turno medico editado exitosamente.";

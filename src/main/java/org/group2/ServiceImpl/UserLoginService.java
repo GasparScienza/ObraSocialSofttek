@@ -6,11 +6,9 @@ import java.util.Set;
 import org.group2.Model.UserLogin;
 import org.group2.Repository.UserLoginRepository;
 import org.group2.Service.IUserLoginService;
-
 import io.quarkus.elytron.security.common.BcryptUtil;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
-import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 
 @ApplicationScoped
@@ -43,33 +41,42 @@ public class UserLoginService implements IUserLoginService{
 	}
 
 	@Override
-	public String editUser(Long id, String username, String password, Set<String> rol) {
+	public String editUser(Long id, UserLogin user) {
 		try {
 			if(id != null) {
 				UserLogin userLogin = this.findUser(id);
 				if(userLogin == null) {
 					throw new RuntimeException("El usuario no existe.");
 				}
-				if(username != null) {
-					userLogin.setUsername(username);
+				if(user.getUsername() != null) {
+					userLogin.setUsername(user.getUsername());
 				}
-				if(password != null) {
-					userLogin.setPassword(BcryptUtil.bcryptHash(password));
+				if(user.getPassword() != null) {
+					userLogin.setPassword(BcryptUtil.bcryptHash(user.getPassword()));
 				}
-				if(rol != null) {
-					userLogin.setRol(rol);
+				if(user.getRol() != null) {
+					userLogin.setRol(user.getRol());
 				}
 				userLoginRepository.getEntityManager().merge(userLogin);
 				return "Usuario editado exitosamente.";
 			}else {
 	            throw new RuntimeException("El ID del usuario no puede ser nulo.");
 	        }
-			
 		} catch (Exception e) {
 			throw new RuntimeException(e.getMessage(), e);
 		}
 
 			
+	}
+
+	@Override
+	public UserLogin defaultUser(String email, String contrasena, Set<String> rol) {
+		UserLogin userLogin = new UserLogin();
+		userLogin.setUsername(email);
+		userLogin.setPassword(contrasena);
+		userLogin.setRol(rol);
+		this.addUser(userLogin);
+		return userLogin;
 	}
     
 }

@@ -51,7 +51,7 @@ public class UserLoginResource {
     @RolesAllowed("ADMIN")
     public Response editUser(@PathParam("id") Long id, UserLogin userLogin ) {
     	try {
-    		iUserLoginService.editUser(id, userLogin.getUsername(), userLogin.getPassword(), userLogin.getRol());
+    		iUserLoginService.editUser(id, userLogin);
     		return Response.ok("Usuario editado correctamente").build();
 		} catch (Exception e) {
 			return Response.status(Response.Status.INTERNAL_SERVER_ERROR)

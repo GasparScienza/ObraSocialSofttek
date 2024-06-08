@@ -1,10 +1,6 @@
 package org.group2.Service;
 
-import java.time.LocalDateTime;
 import java.util.List;
-
-import org.group2.Model.Paciente;
-import org.group2.Model.ProfesionalMedico;
 import org.group2.Model.TurnoMedico;
 
 public interface ITurnoMedicoService {
@@ -12,5 +8,5 @@ public interface ITurnoMedicoService {
 	public List<TurnoMedico> getTurnos();
 	public void delTurno(Long id);
 	public TurnoMedico findTurno(Long id);
-	public String editTurno(Long id, Paciente paciente, ProfesionalMedico profesionalMedico, LocalDateTime fechaHora, String motivoConsulta);
+	public String editTurno(Long id, TurnoMedico turno);
 }

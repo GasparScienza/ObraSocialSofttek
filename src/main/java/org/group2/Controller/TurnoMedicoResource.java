@@ -1,9 +1,7 @@
 package org.group2.Controller;
 
-import org.group2.Model.Receta;
 import org.group2.Model.TurnoMedico;
 import org.group2.Service.ITurnoMedicoService;
-
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.Consumes;
@@ -45,7 +43,7 @@ public class TurnoMedicoResource {
 	@RolesAllowed("ADMIN")
 	public Response editTurno(@PathParam("id") Long id, TurnoMedico turno) {
 		try {
-			iTurnoMedicoService.editTurno(id, turno.getPaciente(), turno.getProfesional(), turno.getFechaHora(), turno.getMotivoConsulta());
+			iTurnoMedicoService.editTurno(id, turno);
 			return Response.ok("Turno Medico editado correctamente").build();
 		} catch (Exception e) {
 			return Response.status(Response.Status.INTERNAL_SERVER_ERROR)

@@ -1,11 +1,8 @@
 package org.group2.Controller;
 
 import java.util.List;
-
 import org.group2.Model.Receta;
 import org.group2.Service.IRecetaService;
-
-import jakarta.annotation.security.PermitAll;
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.Consumes;
@@ -52,7 +49,7 @@ public class RecetaResource {
 	@RolesAllowed("PROFESIONAL")
 	public Response editReceta(@PathParam("id") Long id, Receta receta) {
 		try {
-			iRecetaService.editReceta(id, receta.getMedicamento(), receta.getDiagnostico(), receta.getTurnoMedico());
+			iRecetaService.editReceta(id, receta);
 			return Response.ok("Receta editada correctamente").build();
 		} catch (Exception e) {
 			return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
