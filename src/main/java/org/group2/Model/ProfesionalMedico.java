@@ -24,7 +24,9 @@ public class ProfesionalMedico {
 	private String emailProfesional;
 	@Enumerated(EnumType.STRING)
 	private Especialidad especialidad;
-	private HorarioConsulta horarioConsulta;
+	//private HorarioConsulta horarioConsulta;
 	private String ubicacionConsulta;
+	//private UserLogin userLogin;
+	//TODO user login ProfesionalMedico y joins columns
 	
 }

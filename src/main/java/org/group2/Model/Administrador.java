@@ -20,7 +20,8 @@ public class Administrador {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nombreYApellido;
-	private int Cuil;
+	private String cuil;
+	//private UserLogin userLogin;
 	
-	
+	//TODO user login Administrador y joins columns
 }

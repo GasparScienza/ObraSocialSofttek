@@ -4,11 +4,13 @@ import org.group2.Model.Administrador;
 import org.group2.Model.ProfesionalMedico;
 import org.group2.ServiceImpl.AdministradorService;
 
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
+import jakarta.ws.rs.PUT;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
@@ -19,45 +21,33 @@ import jakarta.ws.rs.core.MediaType;
 public class AdministradorResource {
 	
 	@Inject
-	AdministradorService administradorService;
+	AdministradorService iAdministradorService;
 	
 	@POST
-	public void saveProfesionalMedico(ProfesionalMedico profesionalMedico) {
-		administradorService.saveProfesionalMedico(profesionalMedico);
+	@RolesAllowed({"ADMIN"})
+	public void saveAdministrador(Administrador administrador) {
+		iAdministradorService.saveAdministrador(administrador);
 	}
 	
 	@GET
-	public void getCartillaMedicos() {
-		administradorService.getAllProfesionalMedico();
-	}
-	
-	@GET
-	public void getProfesionalMedico(Long id) {
-		administradorService.getByIdProfesionalMedico(id);
+	@RolesAllowed({"ADMIN"})
+	public void getAdministradorById(Long id) {
+		iAdministradorService.findByIdAdministrador(id);
 	}
 	
 	@DELETE
 	@Path("{id}")
-	public void deleteProfesionalMedico(Long id) {
-		administradorService.deleteByIdProfesionalMedico(id);
-	}
-	
-	@POST
-	public void saveAdministrador(Administrador admin) {
-		administradorService.saveAdministrador(admin);
-	}
-	
-	@DELETE
-	@Path("{id}")
+	@RolesAllowed({"ADMIN"})
 	public void deleteAdministrador(Long id) {
-		administradorService.deleteByIdAdministrador(id);
+		iAdministradorService.deleteByIdAdministrador(id);
 	}
 	
 	
-	/*
 	@PUT
-	public void modificarMedico(ProfesionalMedico profesionalMedico) {
-		profesionalRepository.getEntityManager().merge(profesionalMedico);
+	@Path("/edit/{id}")
+	@RolesAllowed({"ADMIN"})
+	public void modificarAdministrador(Long id,Administrador administrador) {
+		iAdministradorService.updateAdministrador(id,administrador);
 	}
-	*/
+	
 }
