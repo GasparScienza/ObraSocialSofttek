@@ -1,6 +1,5 @@
 package org.group2.Model;
 
-import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import jakarta.persistence.Entity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -12,7 +11,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Setter
 @Getter
-public class ProfesionalMedico extends PanacheEntity{
-
+public class ProfesionalMedico{
+	
 	private String nombre;
 }

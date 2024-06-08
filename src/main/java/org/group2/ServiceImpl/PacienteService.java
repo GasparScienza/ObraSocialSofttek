@@ -2,6 +2,7 @@ package org.group2.ServiceImpl;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import org.group2.Model.Paciente;
@@ -39,18 +40,17 @@ public class PacienteService implements IPacienteService{
 	}
 
 	@Override
-	public Paciente findPaciente(Long id) {
-		return pacienteRepository.findById(id);
+	public Optional<Paciente> findPaciente(Long id) {
+		return pacienteRepository.findByIdOptional(id);
 	}
 
 	@Override
 	public String editPaciente(Long id, Paciente paciente) {
 		try {
 			if(id != null) {
-				Paciente p = this.findPaciente(id);
-				if(p == null) {
-					throw new RuntimeException("El paciente no existe.");
-				}
+				Optional<Paciente> optionalPaciente = this.findPaciente(id);
+				Paciente p = optionalPaciente.orElseThrow(() -> new RuntimeException("El paciente no existe."));
+
 				if(paciente.getEmail() != null) {
 					p.setEmail(paciente.getEmail());
 				}

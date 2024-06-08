@@ -1,6 +1,7 @@
 package org.group2.Controller;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import org.group2.DTO.PacienteDTO;
 import org.group2.Model.Paciente;
@@ -58,25 +59,16 @@ public class PacienteResource {
 	@Path("/{id}")
 	@RolesAllowed({"ADMIN", "PROFESIONAL"})
 	public Response findPaciente(@PathParam("id") Long id) {
-		Paciente paciente = pacienteService.findPaciente(id);
-		PacienteDTO pacienteDTO;
-		//Compruebo si paciente es null
-		if(paciente == null) {
-			return Response.status(Status.NOT_FOUND)
+		Optional<Paciente> optionalPaciente = pacienteService.findPaciente(id);
+        // Verificar si el Optional contiene un paciente
+        if (optionalPaciente.isPresent()) {
+            PacienteDTO pacienteDTO = new PacienteDTO(optionalPaciente.get());
+            return Response.ok(pacienteDTO).build();
+        } else {
+            return Response.status(Status.NOT_FOUND)
                     .entity("Paciente no encontrado")
                     .build();
-		}else {
-			/*
-			//compruebo paciente tiene un usuario asociado
-			if(paciente.getUser() != null) {
-				user = new UserLoginDTO(paciente.getUser().getUsername(), paciente.getUser().getRol());
-			}
-			//creo un pacienteDTO para no mostrar la contraseña del usuario
-			pacienteDTO = new PacienteDTO(paciente.getNombre(), paciente.getEmail(), paciente.getTelefono(), user);
-			*/
-			pacienteDTO = new PacienteDTO(paciente);
-		}
-		return Response.ok(pacienteDTO).build();
+        }
 	}
 	
 	@GET

@@ -24,7 +24,7 @@ public class TurnoMedicoResource {
 	//Puto 1 Crear turno medico
 	@POST
 	@Path("/add")
-	@RolesAllowed({"PROFESIONAL", "ADMIN"})
+	@RolesAllowed({"PROFESIONAL", "ADMIN", "PACIENTE"})
 	public Response addTurno(TurnoMedico turno) {
 		try {
 			iTurnoMedicoService.addTurno(turno);

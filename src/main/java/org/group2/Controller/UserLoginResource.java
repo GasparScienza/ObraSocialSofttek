@@ -3,7 +3,6 @@ package org.group2.Controller;
 import org.group2.DTO.UserLoginDTO;
 import org.group2.Model.UserLogin;
 import org.group2.Service.IUserLoginService;
-
 import io.quarkus.security.identity.SecurityIdentity;
 import jakarta.annotation.security.PermitAll;
 import jakarta.annotation.security.RolesAllowed;
