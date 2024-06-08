@@ -22,9 +22,9 @@ public class TurnoMedico{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	@ManyToOne
+	/*@ManyToOne
 	@JoinColumn(name = "profesional_id")
-	private ProfesionalMedico profesional;
+	private ProfesionalMedico profesional;*/
 	@ManyToOne
 	@JoinColumn(name = "paciente_id")
 	private Paciente paciente;

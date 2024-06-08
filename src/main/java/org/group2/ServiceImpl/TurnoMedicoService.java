@@ -51,9 +51,9 @@ public class TurnoMedicoService implements ITurnoMedicoService{
 				if(turno.getPaciente() != null) {
 					turnoMedico.setPaciente(turno.getPaciente());
 				}
-				if(turno.getProfesional() != null) {
+				/*if(turno.getProfesional() != null) {
 					turnoMedico.setProfesional(turno.getProfesional());
-				}
+				}*/
 				turnoMedicoRepository.getEntityManager().merge(turnoMedico);
 				return "Turno medico editado exitosamente.";
 			}else {
