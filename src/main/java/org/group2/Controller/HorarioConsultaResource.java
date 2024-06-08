@@ -14,7 +14,7 @@ import java.util.List;
 import org.group2.Model.HorarioConsulta;
 import org.group2.Service.IHorarioConsultaService;
 
-@Path("/horarios-consulta")
+@Path("/horariosconsulta")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class HorarioConsultaResource {
