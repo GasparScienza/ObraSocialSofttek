@@ -6,6 +6,9 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,9 +27,13 @@ public class ProfesionalMedico {
 	private String emailProfesional;
 	@Enumerated(EnumType.STRING)
 	private Especialidad especialidad;
-	//private HorarioConsulta horarioConsulta;
+	@OneToMany
+	@JoinColumn(name="horarioConsulta_id")
+	private HorarioConsulta horarioConsulta;
 	private String ubicacionConsulta;
-	//private UserLogin userLogin;
-	//TODO user login ProfesionalMedico y joins columns
+	@OneToOne
+	@JoinColumn(name="user_id")
+	private UserLogin userLogin;
+	//TODO verificar si estan bien los joincolumns
 	
 }
