@@ -1,5 +1,7 @@
 package org.group2.Model;
 
+import org.group2.Enums.Especialidad;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;

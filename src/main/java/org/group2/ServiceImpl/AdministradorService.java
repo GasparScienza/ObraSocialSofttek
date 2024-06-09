@@ -24,7 +24,7 @@ public class AdministradorService implements IAdministrador{
 
 	@Override
 	public void deleteByIdAdministrador(Long id) {
-		//TODO falta validar null
+		
 		administradorRepository.deleteById(id);
 		
 	}
@@ -56,7 +56,7 @@ public class AdministradorService implements IAdministrador{
 
 	@Override
 	public Administrador findByIdAdministrador(Long id) {
-		//TODO falta validar null
+		
 		return administradorRepository.findById(id);		
 	}
 
