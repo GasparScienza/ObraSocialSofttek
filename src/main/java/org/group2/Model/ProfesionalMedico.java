@@ -1,5 +1,7 @@
 package org.group2.Model;
 
+import java.util.List;
+
 import org.group2.Enums.Especialidad;
 
 import jakarta.persistence.Entity;
@@ -29,9 +31,11 @@ public class ProfesionalMedico {
 	private String emailProfesional;
 	@Enumerated(EnumType.STRING)
 	private Especialidad especialidad;
+	
 	@OneToMany
 	@JoinColumn(name="horarioConsulta_id")
-	private HorarioConsulta horarioConsulta;
+	
+	private List<HorarioConsulta> horarioConsulta;
 	private String ubicacionConsulta;
 	@OneToOne
 	@JoinColumn(name="user_id")

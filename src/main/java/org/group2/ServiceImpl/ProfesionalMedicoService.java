@@ -40,7 +40,7 @@ public class ProfesionalMedicoService implements IProfesionalMedicoService{
 
 	@Override
 	public ProfesionalMedico getByIdProfesionalMedico(Long id) {
-		return getByIdProfesionalMedico(id);
+		return profesionalMedicoRepository.findById(id);
 		
 	}
 
