@@ -1,9 +1,13 @@
 package org.group2.ServiceImpl;
 
+import java.time.LocalDateTime;
+import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 import org.group2.Model.TurnoMedico;
 import org.group2.Repository.TurnoMedicoRepository;
 import org.group2.Service.ITurnoMedicoService;
+import io.quarkus.security.identity.SecurityIdentity;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
@@ -14,6 +18,9 @@ public class TurnoMedicoService implements ITurnoMedicoService{
 
 	@Inject
 	private TurnoMedicoRepository turnoMedicoRepository;
+	@Inject
+    private SecurityIdentity securityIdentity;
+
 	@Override
 	public void addTurno(TurnoMedico turnoMedico) {
 		turnoMedicoRepository.persist(turnoMedico);
@@ -24,9 +31,31 @@ public class TurnoMedicoService implements ITurnoMedicoService{
 		return turnoMedicoRepository.listAll();
 	}
 
+	public boolean eliminarTurno(TurnoMedico turno){
+		LocalDateTime fechaHoraActual = LocalDateTime.now();
+        LocalDateTime fechaHoraTurno = turno.getFechaHora();
+		return fechaHoraTurno.isAfter(fechaHoraActual);
+	}
+
 	@Override
-	public void delTurno(Long id) {
-		turnoMedicoRepository.deleteById(id);
+	public String delTurno(Long id) {
+		TurnoMedico turno = this.findTurno(id);
+		/*if(turno != null && securityIdentity.getRoles().contains("ADMIN")){
+			if(eliminarTurno(turno)){
+				turnoMedicoRepository.deleteById(id);
+				return "Turno eliminado correctamente";
+			}
+		}*/
+		if(turno != null && turno.getPaciente() != null && turno.getPaciente().getUser() != null &&
+			turno.getPaciente().getUser().getUsername().equals(securityIdentity.getPrincipal().getName())){
+			if(eliminarTurno(turno)){
+				turnoMedicoRepository.deleteById(id);
+				return "Turno eliminado correctamente";
+			}
+			return "No se puede eliminar el turno";
+		}else {
+			return "No está autorizado para eliminar el turno";
+	    }
 	}
 
 	@Override
@@ -48,12 +77,9 @@ public class TurnoMedicoService implements ITurnoMedicoService{
 				if(turno.getMotivoConsulta() != null) {
 					turnoMedico.setMotivoConsulta(turno.getMotivoConsulta());
 				}
-				if(turno.getPaciente() != null) {
-					turnoMedico.setPaciente(turno.getPaciente());
-				}
-				/*if(turno.getProfesional() != null) {
+				if(turno.getProfesional() != null) {
 					turnoMedico.setProfesional(turno.getProfesional());
-				}*/
+				}
 				turnoMedicoRepository.getEntityManager().merge(turnoMedico);
 				return "Turno medico editado exitosamente.";
 			}else {

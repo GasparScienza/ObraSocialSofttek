@@ -1,13 +1,9 @@
 package org.group2.Controller;
 
 import java.util.List;
-
 import org.group2.DTO.ProfesionalMedicoDTO;
 import org.group2.Model.ProfesionalMedico;
-import org.group2.Repository.ProfesionalMedicoRepository;
 import org.group2.Service.IProfesionalMedicoService;
-import org.group2.ServiceImpl.ProfesionalMedicoService;
-
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.Consumes;
@@ -22,7 +18,7 @@ import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.Response.Status;
 
-@Path("/medicos")
+@Path("/especialistas")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class ProfesionalMedicoResource {
@@ -30,6 +26,14 @@ public class ProfesionalMedicoResource {
 	@Inject
 	private IProfesionalMedicoService iProfesionalMedicoService;
 	
+	//Punto 2 cartilla de medicos
+	@GET
+	@RolesAllowed({"ADMIN", "PACIENTE"})
+	public List<ProfesionalMedicoDTO> getCartilla(){
+		return iProfesionalMedicoService.cartillaMedico();
+	}
+
+
 	@POST
 	@Path("/add")
 	@RolesAllowed("ADMIN")
@@ -51,23 +55,23 @@ public class ProfesionalMedicoResource {
 		ProfesionalMedico profesionalMedico = iProfesionalMedicoService.getByIdProfesionalMedico(id);
 		ProfesionalMedicoDTO profesionalMedicoDTO;
 		
-		if(profesionalMedico== null) {
+		if(profesionalMedico == null) {
 			return Response.status(Status.NOT_FOUND)
-                    .entity("Paciente no encontrado")
+                    .entity("Profesional medico no encontrado")
                     .build();
 		}else {
-			profesionalMedicoDTO = new ProfesionalMedicoDTO(profesionalMedico);
+			profesionalMedicoDTO = new ProfesionalMedicoDTO();
+			
 		}
 		return Response.ok(profesionalMedicoDTO).build();
 	}
-	
+	/*
 	@GET
 	@RolesAllowed({"ADMIN", "PACIENTE"})
 	public List<ProfesionalMedico> getCartillaMedicos(){
 		return iProfesionalMedicoService.getAllProfesionalMedico();
 		//TODO verificar el DTO de la cartilla
-		
-	}
+	}*/
 	
 	@DELETE
 	@Path("/del/{id}")

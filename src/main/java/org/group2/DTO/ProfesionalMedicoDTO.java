@@ -1,10 +1,11 @@
 package org.group2.DTO;
 
-import org.group2.Model.Especialidad;
-
+import java.util.List;
+import org.group2.Enums.Especialidad;
+import org.group2.Model.HorarioConsulta;
 import org.group2.Model.ProfesionalMedico;
-
-
+import org.group2.Service.IHorarioConsultaService;
+import jakarta.inject.Inject;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import lombok.Getter;
@@ -15,30 +16,23 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ProfesionalMedicoDTO {
+
+	@Inject
+	private IHorarioConsultaService horarioConsultaService;
+
 	private String nombreProfesional;
-	private String emailProfesional;
 	@Enumerated(EnumType.STRING)
 	private Especialidad especialidad;
-	//private HorarioConsulta horarioConsulta;
+	private List<HorarioConsulta> horarioConsulta;
 	private String ubicacionConsulta;
-	//private UserLogin userLogin;
-	
-	
+
 	public ProfesionalMedicoDTO(ProfesionalMedico profesionalMedico) {
-		this.nombreProfesional=profesionalMedico.getNombreProfesional();
-		this.emailProfesional=profesionalMedico.getEmailProfesional();
-		this.especialidad=profesionalMedico.getEspecialidad();
-		//this.horarioConsulta=profesionalMedico.getHorarioConsulta();
-		this.ubicacionConsulta=profesionalMedico.getUbicacionConsulta();
-	
-		// TODO falta definir userlogindto
-		/*if(profesionalMedico.getUserLogin()!=null) {
-			this.userLogin= new UserLoginDTO()
-		}
-		*/
+		this.nombreProfesional = profesionalMedico.getNombreProfesional();
+		this.especialidad = profesionalMedico.getEspecialidad();
+		this.horarioConsulta = horarioConsultaService.getHorarios(profesionalMedico.getId());
+		this.ubicacionConsulta = profesionalMedico.getUbicacionConsulta();
 	}
 	
 	
-	
-	
+
 }

@@ -4,7 +4,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
-
 import org.group2.Model.Paciente;
 import org.group2.Repository.PacienteRepository;
 import org.group2.Service.IPacienteService;

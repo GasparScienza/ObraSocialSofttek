@@ -1,7 +1,9 @@
 package org.group2.ServiceImpl;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import org.group2.DTO.ProfesionalMedicoDTO;
 import org.group2.Model.ProfesionalMedico;
 
 import org.group2.Repository.ProfesionalMedicoRepository;
@@ -18,6 +20,8 @@ public class ProfesionalMedicoService implements IProfesionalMedicoService{
 	
 	@Inject
 	private ProfesionalMedicoRepository profesionalMedicoRepository;
+	@Inject
+	private HorarioConsultaService horarioConsultaService;
 
 	@Override
 	public void saveProfesionalMedico(ProfesionalMedico profesionalMedico) {
@@ -34,7 +38,6 @@ public class ProfesionalMedicoService implements IProfesionalMedicoService{
 	@Override
 	public List<ProfesionalMedico> getAllProfesionalMedico() {
 		return profesionalMedicoRepository.listAll();
-		
 	}
 
 	@Override
@@ -73,6 +76,21 @@ public class ProfesionalMedicoService implements IProfesionalMedicoService{
 			throw new RuntimeException(e.getMessage(),e);
 		}
 		
+	}
+
+	@Override
+	public List<ProfesionalMedicoDTO> cartillaMedico() {
+		List<ProfesionalMedico> profesionalMedicos = profesionalMedicoRepository.findProfesionalesConHorariosDisponibles();
+		List<ProfesionalMedicoDTO> profesionalMedicoDTOs = new ArrayList<>();
+		for (ProfesionalMedico profesionalMedico : profesionalMedicos) {
+			ProfesionalMedicoDTO profesionalMedicoDTO = new ProfesionalMedicoDTO();
+			profesionalMedicoDTO.setEspecialidad(profesionalMedico.getEspecialidad());
+			profesionalMedicoDTO.setNombreProfesional(profesionalMedico.getNombreProfesional());
+			profesionalMedicoDTO.setUbicacionConsulta(profesionalMedico.getUbicacionConsulta());
+			profesionalMedicoDTO.setHorarioConsulta(horarioConsultaService.getHorariosDisponibles(profesionalMedico.getId()));
+			profesionalMedicoDTOs.add(profesionalMedicoDTO);
+		}
+		return profesionalMedicoDTOs;
 	}
 	
 

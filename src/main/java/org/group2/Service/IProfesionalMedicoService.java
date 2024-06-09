@@ -2,6 +2,7 @@ package org.group2.Service;
 
 import java.util.List;
 
+import org.group2.DTO.ProfesionalMedicoDTO;
 import org.group2.Model.ProfesionalMedico;
 
 
@@ -15,5 +16,6 @@ public interface IProfesionalMedicoService {
 	public List<ProfesionalMedico> getAllProfesionalMedico();
 	public void deleteByIdProfesionalMedico(Long id);
 	public String updateByIdProfesionalMedico(Long id, ProfesionalMedico profesionalMedico);
+	public List<ProfesionalMedicoDTO> cartillaMedico();
 	
 }
