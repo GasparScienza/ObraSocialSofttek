@@ -8,27 +8,30 @@ import org.group2.Service.IHorarioConsultaService;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
+import jakarta.transaction.Transactional;
 
 @ApplicationScoped
+@Transactional
 public class HorarioConsultaService implements IHorarioConsultaService{
 	@Inject
 	public HorarioConsultaRepository horarioConsultaRepository;
 
 	@Override
 	public void addHorarioConsulta(HorarioConsulta horarioConsulta) {
-		// TODO Auto-generated method stub
-		
+		horarioConsultaRepository.persist(horarioConsulta);
 	}
 
 	@Override
-	public List<HorarioConsulta> getHorarios() {
-		// TODO Auto-generated method stub
-		return horarioConsultaRepository.listAll();
+	public List<HorarioConsulta> getHorarios(Long profesionMedicoId) {
+		return horarioConsultaRepository.findHorariosByProfesionMedicoId(profesionMedicoId);
 	}
 
 	@Override
 	public void cancelHorarioConsulta(Long id) {
-		// TODO Auto-generated method stub
-		
+	}
+
+	@Override
+	public List<HorarioConsulta> getHorariosDisponibles(Long profesionMedicoId) {
+		return horarioConsultaRepository.findHorariosDisponiblesByProfesionMedicoId(profesionMedicoId);
 	}
 }

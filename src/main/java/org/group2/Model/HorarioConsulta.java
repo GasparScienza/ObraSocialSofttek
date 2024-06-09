@@ -2,13 +2,14 @@ package org.group2.Model;
 
 import org.group2.Enums.DiaEnum;
 import org.group2.Enums.HorarioConsultaEnum;
-
-import io.quarkus.hibernate.orm.panache.PanacheEntity;
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,14 +20,20 @@ import lombok.Setter;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class HorarioConsulta extends PanacheEntity {
+public class HorarioConsulta {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 	
 	@Enumerated(EnumType.STRING)
-	@Column(nullable = false)
-	public DiaEnum dia;
+	private DiaEnum dia;
 	
 	@Enumerated(EnumType.STRING)
-	@JoinColumn(name = "horario", nullable = false)
-	public HorarioConsultaEnum horario;
-	
+	private HorarioConsultaEnum horario;
+ 
+	@ManyToOne
+    @JoinColumn(name = "profesional_medico_id")
+    private ProfesionalMedico profesionalMedico;
+
+	private Boolean disponibilidad;
 }

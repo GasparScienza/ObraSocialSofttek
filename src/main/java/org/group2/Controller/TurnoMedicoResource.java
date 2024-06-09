@@ -1,10 +1,14 @@
 package org.group2.Controller;
 
+import java.util.List;
+
 import org.group2.Model.TurnoMedico;
 import org.group2.Service.ITurnoMedicoService;
+
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.PUT;
 import jakarta.ws.rs.Path;
@@ -21,7 +25,12 @@ public class TurnoMedicoResource {
 	@Inject
 	ITurnoMedicoService iTurnoMedicoService;
 	
-	//Puto 1 Crear turno medico
+	@GET
+	public List<TurnoMedico> getTurnos(){
+		return iTurnoMedicoService.getTurnos();
+	}
+
+	//Punto 1 Crear turno medico
 	@POST
 	@Path("/add")
 	@RolesAllowed({"PROFESIONAL", "ADMIN", "PACIENTE"})

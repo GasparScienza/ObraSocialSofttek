@@ -1,11 +1,8 @@
 package org.group2.Controller;
 
 import java.util.List;
-
 import org.group2.Model.Administrador;
-import org.group2.Model.ProfesionalMedico;
 import org.group2.Service.IAdministrador;
-
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.Consumes;

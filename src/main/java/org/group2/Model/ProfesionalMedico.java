@@ -1,11 +1,14 @@
 package org.group2.Model;
 
+import org.group2.Enums.Especialidad;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,9 +27,12 @@ public class ProfesionalMedico {
 	private String emailProfesional;
 	@Enumerated(EnumType.STRING)
 	private Especialidad especialidad;
-	//private HorarioConsulta horarioConsulta;
 	private String ubicacionConsulta;
-	//private UserLogin userLogin;
+	
+	/* 
+	@OneToOne
+	@JoinColumn(name = "user_id")
+	private UserLogin userLogin;*/
 	//TODO user login ProfesionalMedico y joins columns
 	
 }
