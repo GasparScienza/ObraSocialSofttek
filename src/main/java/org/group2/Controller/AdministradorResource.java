@@ -1,8 +1,10 @@
 package org.group2.Controller;
 
+import java.util.List;
+
 import org.group2.Model.Administrador;
 import org.group2.Model.ProfesionalMedico;
-import org.group2.ServiceImpl.AdministradorService;
+import org.group2.Service.IAdministrador;
 
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
@@ -12,6 +14,7 @@ import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.PUT;
 import jakarta.ws.rs.Path;
+import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 
@@ -21,7 +24,7 @@ import jakarta.ws.rs.core.MediaType;
 public class AdministradorResource {
 	
 	@Inject
-	AdministradorService iAdministradorService;
+	IAdministrador iAdministradorService;
 	
 	@POST
 	@RolesAllowed({"ADMIN"})
@@ -31,8 +34,14 @@ public class AdministradorResource {
 	
 	@GET
 	@RolesAllowed({"ADMIN"})
-	public void getAdministradorById(Long id) {
+	@Path("/{id}")
+	public void getAdministradorById(@PathParam("id")Long id) {
 		iAdministradorService.findByIdAdministrador(id);
+	}
+	
+	@GET
+	public List<Administrador> getAllAdmins(){
+		return iAdministradorService.getAllAdmins();
 	}
 	
 	@DELETE

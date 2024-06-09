@@ -1,5 +1,7 @@
 package org.group2.ServiceImpl;
 
+import java.util.List;
+
 import org.group2.Model.Administrador;
 
 import org.group2.Model.ProfesionalMedico;
@@ -8,8 +10,12 @@ import org.group2.Repository.AdministradorRepository;
 import org.group2.Repository.ProfesionalMedicoRepository;
 import org.group2.Service.IAdministrador;
 
+import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
+import jakarta.transaction.Transactional;
 
+@ApplicationScoped
+@Transactional
 public class AdministradorService implements IAdministrador{
 	
 	@Inject
@@ -58,6 +64,12 @@ public class AdministradorService implements IAdministrador{
 	public Administrador findByIdAdministrador(Long id) {
 		//TODO falta validar null
 		return administradorRepository.findById(id);		
+	}
+
+	@Override
+	public List<Administrador> getAllAdmins() {
+		
+		return administradorRepository.listAll();
 	}
 	
 }

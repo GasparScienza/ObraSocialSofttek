@@ -66,6 +66,7 @@ public class ProfesionalMedicoResource {
 	public List<ProfesionalMedico> getCartillaMedicos(){
 		return iProfesionalMedicoService.getAllProfesionalMedico();
 		//TODO verificar el DTO de la cartilla
+		
 	}
 	
 	@DELETE
