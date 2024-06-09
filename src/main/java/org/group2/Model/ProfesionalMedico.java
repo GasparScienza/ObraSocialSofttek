@@ -34,6 +34,6 @@ public class ProfesionalMedico {
 	@OneToOne
 	@JoinColumn(name="user_id")
 	private UserLogin userLogin;
-	//TODO verificar si estan bien los joincolumns
+	
 	
 }
