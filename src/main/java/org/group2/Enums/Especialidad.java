@@ -1,4 +1,4 @@
-package org.group2.Model;
+package org.group2.Enums;
 
 public enum Especialidad {
 

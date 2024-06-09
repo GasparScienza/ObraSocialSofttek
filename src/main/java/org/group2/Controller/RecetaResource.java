@@ -64,8 +64,8 @@ public class RecetaResource {
 	@RolesAllowed("PACIENTE")
 	public Response getReceta(@PathParam("id") Long id) {
 		try {
-			iRecetaService.findReceta(id);
-			return Response.ok().build();
+			Receta receta = iRecetaService.findReceta(id);
+			return Response.ok(receta).build();
 		} catch (Exception e) {
 			return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
                     .entity("Error al buscar la receta: " + e.getMessage())
