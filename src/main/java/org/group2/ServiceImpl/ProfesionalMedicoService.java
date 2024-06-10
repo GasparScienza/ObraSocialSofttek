@@ -96,7 +96,7 @@ public class ProfesionalMedicoService implements IProfesionalMedicoService{
 			profesionalMedicoDTO.setEspecialidad(profesionalMedico.getEspecialidad());
 			profesionalMedicoDTO.setNombreProfesional(profesionalMedico.getNombreProfesional());
 			profesionalMedicoDTO.setUbicacionConsulta(profesionalMedico.getUbicacionConsulta());
-			profesionalMedicoDTO.setHorarioConsulta(horarioConsultaService.getHorariosDisponibles(profesionalMedico.getId()));
+			profesionalMedicoDTO.setHorarioConsulta(horarioConsultaService.getHorarios(profesionalMedico.getId()));
 			profesionalMedicoDTOs.add(profesionalMedicoDTO);
 		}
 		return profesionalMedicoDTOs;

@@ -32,10 +32,6 @@ public class ProfesionalMedico {
 	@Enumerated(EnumType.STRING)
 	private Especialidad especialidad;
 	
-	@OneToMany
-	@JoinColumn(name="horarioConsulta_id")
-	
-	private List<HorarioConsulta> horarioConsulta;
 	private String ubicacionConsulta;
 	@OneToOne
 	@JoinColumn(name="user_id")
