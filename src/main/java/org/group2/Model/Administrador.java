@@ -21,7 +21,5 @@ public class Administrador {
 	private Long id;
 	private String nombreYApellido;
 	private String cuil;
-	//private UserLogin userLogin;
-	
-	//TODO user login Administrador y joins columns
+
 }

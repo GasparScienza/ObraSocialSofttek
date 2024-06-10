@@ -1,8 +1,12 @@
 package org.group2.ServiceImpl;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import org.group2.DTO.HorarioConsultaDTO;
+import org.group2.DTO.ProfesionalMedicoDTO;
 import org.group2.Model.HorarioConsulta;
+import org.group2.Model.ProfesionalMedico;
 import org.group2.Repository.HorarioConsultaRepository;
 import org.group2.Service.IHorarioConsultaService;
 
@@ -20,12 +24,13 @@ public class HorarioConsultaService implements IHorarioConsultaService{
 	public void addHorarioConsulta(HorarioConsulta horarioConsulta) {
 		horarioConsultaRepository.persist(horarioConsulta);
 	}
-
+	/*
 	@Override
 	public List<HorarioConsulta> getHorarios(Long profesionMedicoId) {
 		return horarioConsultaRepository.findHorariosByProfesionMedicoId(profesionMedicoId);
 	}
-
+	*/
+	
 	@Override
 	public void cancelHorarioConsulta(Long id) {
 	}
@@ -33,5 +38,20 @@ public class HorarioConsultaService implements IHorarioConsultaService{
 	@Override
 	public List<HorarioConsulta> getHorariosDisponibles(Long profesionMedicoId) {
 		return horarioConsultaRepository.findHorariosDisponiblesByProfesionMedicoId(profesionMedicoId);
+	}
+	
+	@Override
+	public List<HorarioConsultaDTO> getHorarios(Long profesionMedicoId) {
+		List<HorarioConsulta> horarios = this.getHorariosDisponibles(profesionMedicoId);
+		List<HorarioConsultaDTO> horariosDTO = new ArrayList<>();
+		for (HorarioConsulta h: horarios) {
+			HorarioConsultaDTO horarioDTO = new HorarioConsultaDTO();
+			horarioDTO.setDia(h.getDia());
+			horarioDTO.setHorario(h.getHorario());
+			horarioDTO.setDisponibilidad(h.getDisponibilidad());
+			horariosDTO.add(horarioDTO);
+		}
+		return horariosDTO;
+		
 	}
 }

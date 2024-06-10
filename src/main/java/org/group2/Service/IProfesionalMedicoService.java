@@ -5,6 +5,9 @@ import java.util.List;
 import org.group2.DTO.ProfesionalMedicoDTO;
 import org.group2.Model.ProfesionalMedico;
 
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.transaction.Transactional;
+
 
 
 //medicos, dar de baja los turnos y demas.

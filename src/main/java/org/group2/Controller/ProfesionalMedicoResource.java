@@ -27,13 +27,13 @@ public class ProfesionalMedicoResource {
 	private IProfesionalMedicoService iProfesionalMedicoService;
 	
 	//Punto 2 cartilla de medicos
+	
 	@GET
 	@RolesAllowed({"ADMIN", "PACIENTE"})
 	public List<ProfesionalMedicoDTO> getCartilla(){
 		return iProfesionalMedicoService.cartillaMedico();
 	}
-
-
+	
 	@POST
 	@Path("/add")
 	@RolesAllowed("ADMIN")
@@ -65,14 +65,7 @@ public class ProfesionalMedicoResource {
 		}
 		return Response.ok(profesionalMedicoDTO).build();
 	}
-	/*
-	@GET
-	@RolesAllowed({"ADMIN", "PACIENTE"})
-	public List<ProfesionalMedico> getCartillaMedicos(){
-		return iProfesionalMedicoService.getAllProfesionalMedico();
-		//TODO verificar el DTO de la cartilla
-	}*/
-	
+
 	@DELETE
 	@Path("/del/{id}")
 	@RolesAllowed({"ADMIN"})

@@ -1,14 +1,16 @@
 package org.group2.ServiceImpl;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 
 import org.group2.DTO.ProfesionalMedicoDTO;
 import org.group2.Model.ProfesionalMedico;
 
 import org.group2.Repository.ProfesionalMedicoRepository;
 import org.group2.Service.IProfesionalMedicoService;
-
+import org.group2.Service.IUserLoginService;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
@@ -22,16 +24,23 @@ public class ProfesionalMedicoService implements IProfesionalMedicoService{
 	private ProfesionalMedicoRepository profesionalMedicoRepository;
 	@Inject
 	private HorarioConsultaService horarioConsultaService;
+	@Inject
+	private IUserLoginService iUserLoginService;
 
 	@Override
 	public void saveProfesionalMedico(ProfesionalMedico profesionalMedico) {
+		Set<String> rol = Collections.singleton("PROFESIONAL");
+		profesionalMedico.setUserLogin(iUserLoginService.defaultUser(
+				profesionalMedico.getEmailProfesional(),
+				profesionalMedico.getNombreProfesional(),
+				rol));
 		profesionalMedicoRepository.persist(profesionalMedico);
 		
 	}
 
 	@Override
 	public ProfesionalMedico getByIdProfesionalMedico(Long id) {
-		return getByIdProfesionalMedico(id);
+		return profesionalMedicoRepository.findById(id);
 		
 	}
 
@@ -87,7 +96,7 @@ public class ProfesionalMedicoService implements IProfesionalMedicoService{
 			profesionalMedicoDTO.setEspecialidad(profesionalMedico.getEspecialidad());
 			profesionalMedicoDTO.setNombreProfesional(profesionalMedico.getNombreProfesional());
 			profesionalMedicoDTO.setUbicacionConsulta(profesionalMedico.getUbicacionConsulta());
-			profesionalMedicoDTO.setHorarioConsulta(horarioConsultaService.getHorariosDisponibles(profesionalMedico.getId()));
+			profesionalMedicoDTO.setHorarioConsulta(horarioConsultaService.getHorarios(profesionalMedico.getId()));
 			profesionalMedicoDTOs.add(profesionalMedicoDTO);
 		}
 		return profesionalMedicoDTOs;
