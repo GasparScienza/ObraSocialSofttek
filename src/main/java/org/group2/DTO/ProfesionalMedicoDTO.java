@@ -5,6 +5,9 @@ import org.group2.Enums.Especialidad;
 import org.group2.Model.HorarioConsulta;
 import org.group2.Model.ProfesionalMedico;
 import org.group2.Service.IHorarioConsultaService;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.inject.Inject;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -17,13 +20,13 @@ import lombok.Setter;
 @Setter
 public class ProfesionalMedicoDTO {
 
-	@Inject
+	@Inject @JsonIgnore
 	private IHorarioConsultaService horarioConsultaService;
 
 	private String nombreProfesional;
 	@Enumerated(EnumType.STRING)
 	private Especialidad especialidad;
-	private List<HorarioConsulta> horarioConsulta;
+	private List<HorarioConsultaDTO> horarioConsulta;
 	private String ubicacionConsulta;
 
 	public ProfesionalMedicoDTO(ProfesionalMedico profesionalMedico) {

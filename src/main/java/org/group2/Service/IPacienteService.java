@@ -11,4 +11,5 @@ public interface IPacienteService {
 	public void delPaciente(Long id);
 	public Optional<Paciente> findPaciente(Long id);
 	public String editPaciente(Long id, Paciente paciente);
+	
 }

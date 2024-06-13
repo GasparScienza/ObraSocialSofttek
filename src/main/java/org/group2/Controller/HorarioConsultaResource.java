@@ -12,6 +12,7 @@ import jakarta.ws.rs.core.Response;
 
 import java.util.List;
 
+import org.group2.DTO.HorarioConsultaDTO;
 import org.group2.Model.HorarioConsulta;
 import org.group2.Service.IHorarioConsultaService;
 
@@ -26,7 +27,7 @@ public class HorarioConsultaResource {
 	@GET
 	@Path("/{id}")
 	//Metodo que devuelve todos los horarios de un solo profesional
-	public List<HorarioConsulta> getAll(@PathParam("id") Long id) {
+	public List<HorarioConsultaDTO> getAll(@PathParam("id") Long id) {
 		return iHorarioConsultaService.getHorarios(id);
 	}
 	
