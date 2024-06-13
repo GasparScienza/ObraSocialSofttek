@@ -1,8 +1,9 @@
-# obra-social
+# Obra Social
 
-This project uses Quarkus, the Supersonic Subatomic Java Framework.
-
-If you want to learn more about Quarkus, please visit its website: https://quarkus.io/ .
+Nuestra aplicación está diseñada para gestionar una obra social, proporcionando un sistema para la gestión de profesionales médicos, pacientes, recetas y la creación de turnos médicos.
+La aplicación garantiza que cada operación CRUD, esté protegida mediante la verificación de roles de usuario, asegurando que solo los usuarios autorizados puedan realizar ciertas acciones.
+Fue creada con el lenguaje Java y el framework Quarkus, implementando Quarkus Security para la autorizacion y autenticacion de usuarios segun sus roles. 
+Documentamos nuestra aplicacion con OpenApi.
 
 ## Running the application in dev mode
 

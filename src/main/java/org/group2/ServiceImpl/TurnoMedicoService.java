@@ -1,9 +1,7 @@
 package org.group2.ServiceImpl;
 
 import java.time.LocalDateTime;
-import java.util.Collections;
 import java.util.List;
-import java.util.Set;
 import org.group2.Model.TurnoMedico;
 import org.group2.Repository.TurnoMedicoRepository;
 import org.group2.Service.ITurnoMedicoService;

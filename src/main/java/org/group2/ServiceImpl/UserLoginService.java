@@ -21,7 +21,7 @@ public class UserLoginService implements IUserLoginService{
     @Override
     public void addUser(UserLogin userLogin) {
     	//Encriptacion de contraseña
-        userLogin.password = BcryptUtil.bcryptHash(userLogin.password);
+        userLogin.setPassword(BcryptUtil.bcryptHash(userLogin.getPassword()));
         userLoginRepository.persist(userLogin);
     }
 
@@ -77,6 +77,11 @@ public class UserLoginService implements IUserLoginService{
 		userLogin.setRol(rol);
 		this.addUser(userLogin);
 		return userLogin;
+	}
+
+	@Override
+	public UserLogin findByUsername(String username) {
+		return userLoginRepository.findByUsername(username);
 	}
     
 }

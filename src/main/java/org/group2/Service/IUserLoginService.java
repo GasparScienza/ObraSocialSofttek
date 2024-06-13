@@ -13,4 +13,5 @@ public interface IUserLoginService {
     public List<UserLogin> getUsers();
     public UserLogin findUser(Long id);
     public String editUser(Long id, UserLogin userLogin);
+    public UserLogin findByUsername(String username);
 }
