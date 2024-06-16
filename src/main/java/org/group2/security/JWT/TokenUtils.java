@@ -12,7 +12,7 @@ import io.smallrye.jwt.build.JwtClaimsBuilder;
 
 public class TokenUtils{
     public static String generateToken(String username, Set<String> roles, Long duration, String issuer) throws Exception {
-		String privateKeyLocation = "/privatekey.pem";
+		String privateKeyLocation = "/privateKey.pem";
 		PrivateKey privateKey = readPrivateKey(privateKeyLocation);
 		
 		JwtClaimsBuilder claimsBuilder = Jwt.claims();

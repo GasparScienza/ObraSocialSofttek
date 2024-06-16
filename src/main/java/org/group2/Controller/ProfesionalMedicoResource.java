@@ -1,9 +1,16 @@
 package org.group2.Controller;
 
 import java.util.List;
+
+import org.eclipse.microprofile.openapi.annotations.Operation;
+import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
+import org.eclipse.microprofile.openapi.annotations.responses.APIResponses;
 import org.group2.DTO.ProfesionalMedicoDTO;
 import org.group2.Model.ProfesionalMedico;
 import org.group2.Service.IProfesionalMedicoService;
+
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.Consumes;
@@ -30,6 +37,12 @@ public class ProfesionalMedicoResource {
 	
 	@GET
 	@RolesAllowed({"ADMIN", "PACIENTE"})
+	@Operation(	summary="Cartilla de especialistas", 
+				description = "Devuelve la cartilla de especialistas")
+	@APIResponses(value = {
+			@APIResponse(responseCode = "200", description = "Succesful response"),
+			@APIResponse(responseCode = "404", description = "Not Found")
+			})
 	public List<ProfesionalMedicoDTO> getCartilla(){
 		return iProfesionalMedicoService.cartillaMedico();
 	}
@@ -37,6 +50,8 @@ public class ProfesionalMedicoResource {
 	@POST
 	@Path("/add")
 	@RolesAllowed("ADMIN")
+	@ApiOperation(	value = "carga un medico", notes ="carga un medico en la base de datos",
+					response = ProfesionalMedico.class, tags = "ProfesionalMedico")
 	public Response saveProfesionalMedico(ProfesionalMedico profesionalMedico) {
 		try {
 			iProfesionalMedicoService.saveProfesionalMedico(profesionalMedico);
@@ -51,10 +66,14 @@ public class ProfesionalMedicoResource {
 	@GET
 	@Path("/{id}")
 	@RolesAllowed({"ADMIN"})
-	public Response getByIdProfesionalMedico(@PathParam("id") Long id) {
+	@ApiOperation(value = "buscar medico por id", notes ="busca medico en la base de datos por id",
+				response = ProfesionalMedico.class, tags = "ProfesionalMedico")
+	public Response getByIdProfesionalMedico(
+			@ApiParam(value="Datos del medico", name = "id", example= "1",required=true)
+			@PathParam("id") Long id
+			) {
 		ProfesionalMedico profesionalMedico = iProfesionalMedicoService.getByIdProfesionalMedico(id);
 		ProfesionalMedicoDTO profesionalMedicoDTO;
-		
 		if(profesionalMedico == null) {
 			return Response.status(Status.NOT_FOUND)
                     .entity("Profesional medico no encontrado")

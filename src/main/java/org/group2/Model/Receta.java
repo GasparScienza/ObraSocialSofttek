@@ -16,6 +16,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Setter
 @Getter
+//no le agregue las annotations de swagger porque ya los toma, los anteriores no
 public class Receta{
 
 	@Id

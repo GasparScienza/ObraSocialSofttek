@@ -1,9 +1,11 @@
 package org.group2.Controller;
 
 import org.group2.DTO.UserLoginDTO;
+import org.group2.Model.ProfesionalMedico;
 import org.group2.Model.UserLogin;
 import org.group2.Service.IUserLoginService;
 import io.quarkus.security.identity.SecurityIdentity;
+import io.swagger.annotations.ApiOperation;
 import jakarta.annotation.security.PermitAll;
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
@@ -34,6 +36,9 @@ public class UserLoginResource {
     @POST
     @Path("/add")
     @PermitAll
+    //@ApiOperation(	value = "carga un usuario", notes ="carga un usuario en la base de datos",
+	//response = UserLogin.class, tags = "UserLogin")
+    //TODO corregir el error de que no me carga un usuario en la swagger ui, y anotar lo corregido
     public Response addUser(UserLogin userLogin){
     	try {
     		iUserLoginService.addUser(userLogin);
