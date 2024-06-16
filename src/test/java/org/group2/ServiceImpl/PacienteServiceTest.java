@@ -5,24 +5,19 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
-
-import org.group2.Model.HorarioConsulta;
 import org.group2.Model.Paciente;
 import org.group2.Model.UserLogin;
 import org.group2.Repository.PacienteRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.ArgumentMatchers;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-
 import io.quarkus.test.InjectMock;
 import io.quarkus.test.junit.QuarkusTest;
 import jakarta.inject.Inject;
@@ -84,24 +79,5 @@ public class PacienteServiceTest {
         assertEquals(pacienteEditado.getEmail(), paciente1.getEmail());
         assertEquals(pacienteEditado.getTelefono(), paciente1.getTelefono());
         assertEquals(pacienteEditado.getUser(), paciente1.getUser());
-    }
-
-    @Test
-    void testAddPaciente() {
-
-    }
-
-    @Test
-    void testDelPaciente() {
-
-    }
-
-    
-
-    @Test
-    void testFindPaciente() {
-
-    }
-
-    
+    }   
 }

@@ -3,7 +3,6 @@ package org.group2.ServiceImpl;
 import io.quarkus.test.junit.QuarkusTest;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.verify;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
