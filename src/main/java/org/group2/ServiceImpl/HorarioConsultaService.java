@@ -2,14 +2,10 @@ package org.group2.ServiceImpl;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import org.group2.DTO.HorarioConsultaDTO;
-import org.group2.DTO.ProfesionalMedicoDTO;
 import org.group2.Model.HorarioConsulta;
-import org.group2.Model.ProfesionalMedico;
 import org.group2.Repository.HorarioConsultaRepository;
 import org.group2.Service.IHorarioConsultaService;
-
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
@@ -24,13 +20,7 @@ public class HorarioConsultaService implements IHorarioConsultaService{
 	public void addHorarioConsulta(HorarioConsulta horarioConsulta) {
 		horarioConsultaRepository.persist(horarioConsulta);
 	}
-	/*
-	@Override
-	public List<HorarioConsulta> getHorarios(Long profesionMedicoId) {
-		return horarioConsultaRepository.findHorariosByProfesionMedicoId(profesionMedicoId);
-	}
-	*/
-	
+
 	@Override
 	public void cancelHorarioConsulta(Long id) {
 	}
@@ -52,6 +42,5 @@ public class HorarioConsultaService implements IHorarioConsultaService{
 			horariosDTO.add(horarioDTO);
 		}
 		return horariosDTO;
-		
 	}
 }
