@@ -9,9 +9,7 @@ import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
-
 import java.util.List;
-
 import org.group2.DTO.HorarioConsultaDTO;
 import org.group2.Model.HorarioConsulta;
 import org.group2.Service.IHorarioConsultaService;

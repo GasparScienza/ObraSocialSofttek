@@ -87,5 +87,4 @@ public class RecetaResource {
 			return Response.ok("Usuario Eliminado correctamente").build();
 		}
 	}
-	
 }

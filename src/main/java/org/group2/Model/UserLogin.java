@@ -1,7 +1,6 @@
 package org.group2.Model;
 
 import java.util.Set;
-
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import jakarta.persistence.Entity;
 import lombok.AllArgsConstructor;

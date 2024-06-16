@@ -84,7 +84,6 @@ public class PacienteResource {
 			pacientesDTO = pacientes.stream()//convierte la lista en un flujo de elementos 
 	                .map(PacienteDTO::new)//aplica una función a cada elemento del flujo, crea un nuevo PacienteDTO para cada paciente
 	                .collect(Collectors.toList());//Convierte el flujo de elementos en una lista
-	        
 	        return Response.ok(pacientesDTO).build();
 		}
 	}

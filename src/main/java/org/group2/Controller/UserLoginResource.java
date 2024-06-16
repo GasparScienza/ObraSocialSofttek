@@ -3,7 +3,6 @@ package org.group2.Controller;
 import org.group2.DTO.UserLoginDTO;
 import org.group2.Model.UserLogin;
 import org.group2.Service.IUserLoginService;
-import io.quarkus.security.identity.SecurityIdentity;
 import jakarta.annotation.security.PermitAll;
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
@@ -26,9 +25,6 @@ public class UserLoginResource {
     
     @Inject
     private IUserLoginService iUserLoginService;
-    
-    @Inject
-    private SecurityIdentity securityIdentity;
     
     //Crear un usuario
     @POST
@@ -88,16 +84,5 @@ public class UserLoginResource {
         	iUserLoginService.delUser(id);
         	return Response.ok("Usuario Eliminado correctamente").build();
         }
-    	
-    }
-    
-    
-    
-    @GET
-    @Path("/me")
-    @RolesAllowed("ADMIN")
-    public UserLoginDTO getMe(){
-    	UserLoginDTO me = new UserLoginDTO(securityIdentity.getPrincipal().getName(),  securityIdentity.getRoles());
-    	return me;
     }
 }

@@ -1,7 +1,6 @@
 package org.group2.Enums;
 
 public enum HorarioConsultaEnum {
-	
 	H08_00_08_30,
     H08_30_09_00,
     H09_00_09_30,

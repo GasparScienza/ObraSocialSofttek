@@ -1,7 +1,6 @@
 package org.group2.Service;
 
 import java.util.List;
-
 import org.group2.Model.Administrador;
 
 //el admin va a poder sacar turnos para cualquier paciente, 
