@@ -3,7 +3,6 @@ package org.group2.security.JWT;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 import org.group2.Model.UserLogin;
 import org.group2.Service.IUserLoginService;
-
 import io.quarkus.elytron.security.common.BcryptUtil;
 import jakarta.annotation.security.PermitAll;
 import jakarta.inject.Inject;

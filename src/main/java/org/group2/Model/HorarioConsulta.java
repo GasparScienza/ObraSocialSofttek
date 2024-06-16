@@ -24,16 +24,12 @@ public class HorarioConsulta {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
 	@Enumerated(EnumType.STRING)
 	private DiaEnum dia;
-	
 	@Enumerated(EnumType.STRING)
 	private HorarioConsultaEnum horario;
- 
 	@ManyToOne
     @JoinColumn(name = "profesional_medico_id")
     private ProfesionalMedico profesionalMedico;
-
 	private Boolean disponibilidad;
 }

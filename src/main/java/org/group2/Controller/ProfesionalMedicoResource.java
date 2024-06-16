@@ -27,7 +27,6 @@ public class ProfesionalMedicoResource {
 	private IProfesionalMedicoService iProfesionalMedicoService;
 	
 	//Punto 2 cartilla de medicos
-	
 	@GET
 	@RolesAllowed({"ADMIN", "PACIENTE"})
 	public List<ProfesionalMedicoDTO> getCartilla(){
@@ -54,14 +53,12 @@ public class ProfesionalMedicoResource {
 	public Response getByIdProfesionalMedico(@PathParam("id") Long id) {
 		ProfesionalMedico profesionalMedico = iProfesionalMedicoService.getByIdProfesionalMedico(id);
 		ProfesionalMedicoDTO profesionalMedicoDTO;
-		
 		if(profesionalMedico == null) {
 			return Response.status(Status.NOT_FOUND)
                     .entity("Profesional medico no encontrado")
                     .build();
 		}else {
 			profesionalMedicoDTO = new ProfesionalMedicoDTO();
-			
 		}
 		return Response.ok(profesionalMedicoDTO).build();
 	}
@@ -94,5 +91,4 @@ public class ProfesionalMedicoResource {
                     .build();
 		}
 	}
-	
 }

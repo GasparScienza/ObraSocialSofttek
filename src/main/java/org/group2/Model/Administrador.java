@@ -21,5 +21,4 @@ public class Administrador {
 	private Long id;
 	private String nombreYApellido;
 	private String cuil;
-
 }

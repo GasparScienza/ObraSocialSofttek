@@ -1,10 +1,8 @@
 package org.group2.Controller;
 
 import java.util.List;
-
 import org.group2.Model.TurnoMedico;
 import org.group2.Service.ITurnoMedicoService;
-
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.Consumes;
@@ -30,6 +28,7 @@ public class TurnoMedicoResource {
 	public List<TurnoMedico> getTurnos(){
 		return iTurnoMedicoService.getTurnos();
 	}
+
 	//Punto 1 Crear turno medico
 	@POST
 	@RolesAllowed({"PROFESIONAL", "ADMIN", "PACIENTE"})
@@ -76,5 +75,4 @@ public class TurnoMedicoResource {
 			.build();
         }
 	}
-
 }

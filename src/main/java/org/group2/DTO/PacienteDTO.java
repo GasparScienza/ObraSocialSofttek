@@ -21,8 +21,5 @@ public class PacienteDTO {
 		if(paciente.getUser() != null) {
 			this.user = new UserLoginDTO(paciente.getUser().getUsername(),paciente.getUser().getRol());
 		}
-		
 	}
-	
-	
 }
