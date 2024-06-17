@@ -35,7 +35,7 @@ public class UserLoginResource {
     @PermitAll
     //@ApiOperation(	value = "carga un usuario", notes ="carga un usuario en la base de datos",
 	//response = UserLogin.class, tags = "UserLogin")
-    //TODO corregir el error de que no me carga un usuario en la swagger ui, y anotar lo corregido
+    
     public Response addUser(UserLogin userLogin){
     	try {
     		iUserLoginService.addUser(userLogin);
