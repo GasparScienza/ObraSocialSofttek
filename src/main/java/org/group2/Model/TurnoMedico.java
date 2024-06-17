@@ -31,7 +31,6 @@ public class TurnoMedico{
 	@ManyToOne
 	@JoinColumn(name = "paciente_id")
 	private Paciente paciente;
-	
 	/*LocalDateTime fechaHoraDesdeTexto = LocalDateTime.parse("2024-06-06T15:30:45");
 	// La cadena debe estar en el formato "yyyy-MM-dd'T'HH:mm:ss"*/
 	@ApiModelProperty

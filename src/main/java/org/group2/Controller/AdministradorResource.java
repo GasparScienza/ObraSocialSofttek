@@ -71,12 +71,10 @@ public class AdministradorResource {
 		iAdministradorService.deleteByIdAdministrador(id);
 	}
 	
-	
 	@PUT
 	@Path("/edit/{id}")
 	@RolesAllowed({"ADMIN"})
 	public void modificarAdministrador(Long id,Administrador administrador) {
 		iAdministradorService.updateAdministrador(id,administrador);
 	}
-	
 }

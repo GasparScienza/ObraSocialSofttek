@@ -2,12 +2,9 @@ package org.group2.DTO;
 
 import java.util.List;
 import org.group2.Enums.Especialidad;
-import org.group2.Model.HorarioConsulta;
 import org.group2.Model.ProfesionalMedico;
 import org.group2.Service.IHorarioConsultaService;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import jakarta.inject.Inject;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -35,7 +32,4 @@ public class ProfesionalMedicoDTO {
 		this.horarioConsulta = horarioConsultaService.getHorarios(profesionalMedico.getId());
 		this.ubicacionConsulta = profesionalMedico.getUbicacionConsulta();
 	}
-	
-	
-
 }

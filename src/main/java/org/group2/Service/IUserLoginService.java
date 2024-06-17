@@ -2,9 +2,7 @@ package org.group2.Service;
 
 import java.util.List;
 import java.util.Set;
-
 import org.group2.Model.UserLogin;
-
 
 public interface IUserLoginService {
     public void addUser(UserLogin userLogin);

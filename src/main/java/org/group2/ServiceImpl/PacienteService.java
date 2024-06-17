@@ -63,7 +63,7 @@ public class PacienteService implements IPacienteService{
 					p.setUser(paciente.getUser());
 				}
 				pacienteRepository.getEntityManager().merge(p);
-				return "Receta editado exitosamente.";
+				return "Paciente editado exitosamente.";
 			}else {
 				throw new RuntimeException("El ID del paciente no puede ser nulo.");
 			}

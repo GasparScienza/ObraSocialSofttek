@@ -29,9 +29,6 @@ public class UserLoginResource {
     @Inject
     private IUserLoginService iUserLoginService;
     
-    @Inject
-    private SecurityIdentity securityIdentity;
-    
     //Crear un usuario
     @POST
     @Path("/add")
@@ -93,16 +90,5 @@ public class UserLoginResource {
         	iUserLoginService.delUser(id);
         	return Response.ok("Usuario Eliminado correctamente").build();
         }
-    	
-    }
-    
-    
-    
-    @GET
-    @Path("/me")
-    @RolesAllowed("ADMIN")
-    public UserLoginDTO getMe(){
-    	UserLoginDTO me = new UserLoginDTO(securityIdentity.getPrincipal().getName(),  securityIdentity.getRoles());
-    	return me;
     }
 }

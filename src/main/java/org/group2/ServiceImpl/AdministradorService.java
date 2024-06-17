@@ -15,18 +15,14 @@ public class AdministradorService implements IAdministrador{
 	@Inject
 	AdministradorRepository administradorRepository;
 
-
 	@Override
 	public void saveAdministrador(Administrador admin) {
 		administradorRepository.persist(admin);
-		
 	}
 
 	@Override
 	public void deleteByIdAdministrador(Long id) {
-		
 		administradorRepository.deleteById(id);
-		
 	}
 
 	@Override
@@ -51,18 +47,15 @@ public class AdministradorService implements IAdministrador{
 		} catch (Exception e) {
 			throw new RuntimeException(e.getMessage(), e);
 		}
-		
 	}
 
 	@Override
 	public Administrador findByIdAdministrador(Long id) {
-		
 		return administradorRepository.findById(id);		
 	}
 
 	@Override
 	public List<Administrador> getAllAdmins() {
-		
 		return administradorRepository.listAll();
 	}
 	

@@ -34,7 +34,6 @@ public class ProfesionalMedicoResource {
 	private IProfesionalMedicoService iProfesionalMedicoService;
 	
 	//Punto 2 cartilla de medicos
-	
 	@GET
 	@RolesAllowed({"ADMIN", "PACIENTE"})
 	@Operation(	summary="Cartilla de especialistas", 
@@ -80,7 +79,6 @@ public class ProfesionalMedicoResource {
                     .build();
 		}else {
 			profesionalMedicoDTO = new ProfesionalMedicoDTO();
-			
 		}
 		return Response.ok(profesionalMedicoDTO).build();
 	}
@@ -113,5 +111,4 @@ public class ProfesionalMedicoResource {
                     .build();
 		}
 	}
-	
 }

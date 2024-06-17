@@ -43,6 +43,4 @@ public class ProfesionalMedico {
 	@OneToOne
 	@JoinColumn(name="user_id")
 	private UserLogin userLogin;
-	
-	
 }

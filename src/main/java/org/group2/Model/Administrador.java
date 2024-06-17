@@ -25,5 +25,4 @@ public class Administrador {
 	@ApiModelProperty(notes = "nombre administrador", example ="Juan Perez", required=true)
 	private String nombreYApellido;
 	private String cuil;
-
 }
