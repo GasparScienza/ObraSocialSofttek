@@ -12,5 +12,6 @@ public class ProfesionalMedicoRepository implements PanacheRepository<Profesiona
                 "SELECT DISTINCT pm FROM ProfesionalMedico pm JOIN HorarioConsulta hc ON pm.id = hc.profesionalMedico.id WHERE hc.disponibilidad = true", 
                 ProfesionalMedico.class)
             .getResultList();
+        
     }
 }

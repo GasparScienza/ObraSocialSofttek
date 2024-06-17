@@ -1,8 +1,15 @@
 package org.group2.Controller;
 
 import java.util.List;
+
+import org.eclipse.microprofile.openapi.annotations.Operation;
+import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
+import org.eclipse.microprofile.openapi.annotations.responses.APIResponses;
 import org.group2.Model.Administrador;
 import org.group2.Service.IAdministrador;
+
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.Consumes;
@@ -25,6 +32,9 @@ public class AdministradorResource {
 	
 	@POST
 	@RolesAllowed({"ADMIN"})
+	@ApiOperation(value="carga un administrador", notes ="carga un administrador en base de datos",
+					response = Administrador.class)
+					
 	public void saveAdministrador(Administrador administrador) {
 		iAdministradorService.saveAdministrador(administrador);
 	}
@@ -32,11 +42,24 @@ public class AdministradorResource {
 	@GET
 	@RolesAllowed({"ADMIN"})
 	@Path("/{id}")
-	public void getAdministradorById(@PathParam("id")Long id) {
+	@ApiOperation(value="buscar admin por id", notes ="buscar admin en base de datos por id",
+					response= Administrador.class)
+	@APIResponse(responseCode = "404", description = "Not Found")
+	public void getAdministradorById(
+			@ApiParam(value="Datos del admin", name = "id", example = "1", required= true)
+			@PathParam("id")Long id) {
 		iAdministradorService.findByIdAdministrador(id);
 	}
 	
 	@GET
+	@Operation(summary="Administradores",
+				description="Lista de Administradores")
+	@APIResponses(value=
+			{
+					@APIResponse(responseCode = "200", description ="Succeful respones"),
+					@APIResponse(responseCode = "404", description ="Not Found")
+			}
+	)
 	public List<Administrador> getAllAdmins(){
 		return iAdministradorService.getAllAdmins();
 	}

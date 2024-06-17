@@ -3,6 +3,9 @@ package org.group2.Controller;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+
+import org.eclipse.microprofile.openapi.annotations.Operation;
+import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 import org.group2.DTO.PacienteDTO;
 import org.group2.Model.Paciente;
 import org.group2.Service.IPacienteService;
@@ -73,6 +76,8 @@ public class PacienteResource {
 	
 	@GET
 	@RolesAllowed({"ADMIN", "PROFESIONAL"})
+	@Operation(summary = "Pacientes",description="Lista de Pacientes registrados")
+	@APIResponse(responseCode = "404", description = "Not Found")
 	public Response getPacientes() {
 		List<Paciente> pacientes = pacienteService.getPacientes();
 		List<PacienteDTO> pacientesDTO;

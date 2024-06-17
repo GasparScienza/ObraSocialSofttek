@@ -1,6 +1,9 @@
 package org.group2.Controller;
 
 import java.util.List;
+
+import org.eclipse.microprofile.openapi.annotations.Operation;
+import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 import org.group2.Model.Receta;
 import org.group2.Service.IRecetaService;
 import jakarta.annotation.security.RolesAllowed;
@@ -26,6 +29,8 @@ public class RecetaResource {
 	
 	@GET
 	@RolesAllowed({"ADMIN", "PROFESIONAL"})
+	@Operation(summary = "Recetas", description = "Lista de recetas")
+	@APIResponse(responseCode = "404", description = "Not Found")
 	public List<Receta> getRecetas(){
 		return iRecetaService.getRecetas();
 	}
@@ -33,6 +38,8 @@ public class RecetaResource {
 	@POST
 	@Path("/add")
 	@RolesAllowed("PROFESIONAL")
+	@Operation(summary = "Crear Receta", description = "Solo el usuario Profesional"
+			+ "puede crear una receta para un usuario Paciente")
 	public Response addReceta(Receta receta) {
 		try {
 			iRecetaService.addReceta(receta);
@@ -62,6 +69,9 @@ public class RecetaResource {
 	@GET
 	@Path("/{id}")
 	@RolesAllowed("PACIENTE")
+	@Operation(summary = "Descarga una receta", description = "Solo un usuario Paciente puede"
+			+ "descargar una receta")
+	@APIResponse(responseCode = "404",description = "Not Found")
 	public Response getReceta(@PathParam("id") Long id) {
 		try {
 			Receta receta = iRecetaService.findReceta(id);
