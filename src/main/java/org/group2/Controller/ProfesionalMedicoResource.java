@@ -35,7 +35,7 @@ public class ProfesionalMedicoResource {
 	
 	//Punto 2 cartilla de medicos
 	@GET
-	@RolesAllowed({"ADMIN", "PACIENTE"})
+	//@RolesAllowed({"ADMIN", "PACIENTE"})
 	@Operation(	summary="Cartilla de especialistas", 
 				description = "Devuelve la cartilla de especialistas")
 	@APIResponses(value = {

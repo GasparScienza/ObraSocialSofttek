@@ -93,6 +93,7 @@ public class ProfesionalMedicoService implements IProfesionalMedicoService{
 		List<ProfesionalMedicoDTO> profesionalMedicoDTOs = new ArrayList<>();
 		for (ProfesionalMedico profesionalMedico : profesionalMedicos) {
 			ProfesionalMedicoDTO profesionalMedicoDTO = new ProfesionalMedicoDTO();
+			profesionalMedicoDTO.setId(profesionalMedico.getId());
 			profesionalMedicoDTO.setEspecialidad(profesionalMedico.getEspecialidad());
 			profesionalMedicoDTO.setNombreProfesional(profesionalMedico.getNombreProfesional());
 			profesionalMedicoDTO.setUbicacionConsulta(profesionalMedico.getUbicacionConsulta());

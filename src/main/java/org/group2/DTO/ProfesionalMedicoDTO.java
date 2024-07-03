@@ -20,6 +20,7 @@ public class ProfesionalMedicoDTO {
 	@Inject @JsonIgnore
 	private IHorarioConsultaService horarioConsultaService;
 
+	private Long id;
 	private String nombreProfesional;
 	@Enumerated(EnumType.STRING)
 	private Especialidad especialidad;
