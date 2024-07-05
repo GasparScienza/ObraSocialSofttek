@@ -32,5 +32,6 @@ public class ProfesionalMedicoDTO {
 		this.especialidad = profesionalMedico.getEspecialidad();
 		this.horarioConsulta = horarioConsultaService.getHorarios(profesionalMedico.getId());
 		this.ubicacionConsulta = profesionalMedico.getUbicacionConsulta();
+		this.id=profesionalMedico.getId();
 	}
 }

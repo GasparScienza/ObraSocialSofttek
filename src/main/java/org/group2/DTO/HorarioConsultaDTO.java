@@ -14,6 +14,7 @@ import lombok.Setter;
 @Setter
 public class HorarioConsultaDTO {
 	
+	private Long id;
 	@Enumerated(EnumType.STRING)
 	private DiaEnum dia;
 	@Enumerated(EnumType.STRING)
@@ -21,6 +22,7 @@ public class HorarioConsultaDTO {
 	private Boolean disponibilidad;
 
 	public HorarioConsultaDTO(HorarioConsulta horaC) {
+		this.id= horaC.getId();
 		this.dia = horaC.getDia();
 		this.horario = horaC.getHorario();
 		this.disponibilidad = horaC.getDisponibilidad();

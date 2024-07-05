@@ -37,4 +37,5 @@ public class TurnoMedico{
 	private LocalDateTime fechaHora;
 	@ApiModelProperty
 	private String motivoConsulta;
+	
 }

@@ -39,6 +39,7 @@ public class HorarioConsultaService implements IHorarioConsultaService{
 			horarioDTO.setDia(h.getDia());
 			horarioDTO.setHorario(h.getHorario());
 			horarioDTO.setDisponibilidad(h.getDisponibilidad());
+			horarioDTO.setId(h.getId());
 			horariosDTO.add(horarioDTO);
 		}
 		return horariosDTO;
