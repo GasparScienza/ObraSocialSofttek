@@ -36,11 +36,12 @@ public class TurnoMedicoResource {
 
 	//Punto 1 Crear turno medico
 	@POST
-	@RolesAllowed({"PROFESIONAL", "ADMIN", "PACIENTE"})
+	//@RolesAllowed({"PROFESIONAL", "ADMIN", "PACIENTE"})
 	@Operation(summary = "Crea un turno medico",description = "Crea un turno ya sea con un usuario "
 			+ "Paciente, Profesional o Administrador")
 	public Response addTurno(TurnoMedico turno) {
 		try {
+			System.out.println(turno+"turnoController");
 			iTurnoMedicoService.addTurno(turno);
 			return Response.ok("Turno medico creado correctamente").build();
 		} catch (Exception e) {
