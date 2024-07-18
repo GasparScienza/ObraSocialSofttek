@@ -75,7 +75,7 @@ public class PacienteResource {
 	}
 	
 	@GET
-	@RolesAllowed({"ADMIN", "PROFESIONAL"})
+	//@RolesAllowed({"ADMIN", "PROFESIONAL"})
 	@Operation(summary = "Pacientes",description="Lista de Pacientes registrados")
 	@APIResponse(responseCode = "404", description = "Not Found")
 	public Response getPacientes() {

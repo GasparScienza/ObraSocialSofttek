@@ -9,12 +9,14 @@ import lombok.Setter;
 @Getter
 @Setter
 public class PacienteDTO {
+	private Long id;
 	private String nombre;
 	private String email;
 	private String telefono;
 	private UserLoginDTO user;
 	
 	public PacienteDTO(Paciente paciente) {
+		this.id = paciente.getId();
 		this.nombre = paciente.getNombre();
 		this.email = paciente.getEmail();
 		this.telefono = paciente.getTelefono();
